@@ -70,7 +70,7 @@ variable "office_cidrs" {
 }
 
 variable "custom_vcl" {
-  description = "rendered output of custom vcl template"
+  description = "rendered output of custom vcl template. Set to false if you don't want to use"
 }
 
 variable "tag_product" {}
