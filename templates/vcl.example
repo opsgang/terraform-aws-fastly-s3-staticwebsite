@@ -1,0 +1,31 @@
+sub vcl_recv {
+#FASTLY recv
+  if (req.http.Host ~ "${fastly_dns_name}") {
+    set req.http.Host = "${bucket_name}";
+  }
+
+  # remove cookies from following extensions
+  if (req.url ~ "(?i)\.(pdf|asc|dat|txt|doc|xls|ppt|tgz|csv|png|gif|jpeg|jpg|ico|swf|css|js|svg|woff|woff2)(\?.*)?$") {
+    unset req.http.Cookie;
+  }
+}
+
+sub vcl_deliver {
+#FASTLY deliver
+
+  if (! resp.http.Cache-Control) {
+    set resp.http.Cache-Control = "public, max=31536000";
+  }
+
+  # CORS Headers
+  set resp.http.Access-Control-Allow-Origin = "*";
+
+  if ( req.request == "OPTIONS" ) {
+    set resp.http.Access-Control-Max-Age = "1728000";
+    set resp.http.Access-Control-Allow-Methods = "GET, OPTIONS";
+    set resp.http.Access-Control-Allow-Headers = "Content-Type,Accept,Origin,User-Agent,Cache-Control,Keep-Alive";
+    set resp.http.Content-Type = "text/plain charset=UTF-8";
+    set resp.status = 204;
+  }
+  # /CORS Headers
+}
