@@ -90,41 +90,6 @@ resource "fastly_service_v1" "s3_bucket" {
     content_types = ["${var.gzip_content_types}"]
   }
 
-  header {
-    destination = "http.x-amz-request-id"
-    type        = "cache"
-    action      = "delete"
-    name        = "Remove x-amz-request-id header"
-  }
-
-  header {
-    destination = "http.server"
-    type        = "cache"
-    action      = "delete"
-    name        = "Remove server header"
-  }
-
-  header {
-    destination = "http.x-amz-id-2"
-    type        = "cache"
-    action      = "delete"
-    name        = "Remove x-amz-id-2 header"
-  }
-
-  header {
-    destination = "http.x-amz-version-id"
-    type        = "cache"
-    action      = "delete"
-    name        = "Remove x-amz-version-id header"
-  }
-
-  header {
-    destination = "http.x-amz-meta-s3cmd-attrs"
-    type        = "cache"
-    action      = "delete"
-    name        = "Remove x-amz-meta-s3cmd-attrs header"
-  }
-
   request_setting {
     name = "Force-TLS"
 

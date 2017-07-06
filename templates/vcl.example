@@ -28,4 +28,12 @@ sub vcl_deliver {
     set resp.status = 204;
   }
   # /CORS Headers
+  if (!req.http.Fastly-Debug) {
+    unset resp.http.x-amz-request-id;
+    unset resp.http.server;
+    unset resp.http.x-amz-id-2;
+    unset resp.http.x-amz-version-id;
+    unset resp.http.x-amz-meta-s3cmd-attrs;
+  }
+
 }
