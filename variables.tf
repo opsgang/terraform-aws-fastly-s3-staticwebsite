@@ -73,18 +73,7 @@ variable "custom_vcl" {
   description = "rendered output of custom vcl template"
 }
 
-variable "tag_product" {
-  default = "blog"
-}
-
-variable "tag_env" {
-  default = "dev"
-}
-
-variable "tag_role" {
-  default = "blog"
-}
-
-variable "tag_purpose" {
-  default = "content"
-}
+variable "tag_product" {}
+variable "tag_env" {}
+variable "tag_role" {}
+variable "tag_purpose" {}
