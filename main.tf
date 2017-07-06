@@ -70,6 +70,8 @@ resource "fastly_service_v1" "s3_bucket" {
     name = "${var.fastly_dns_name}"
   }
 
+  default_host = "${var.fastly_dns_name}"
+
   backend {
     address = "${aws_s3_bucket.fastly.id}.s3-website-${data.aws_region.current.name}.amazonaws.com"
     name    = "AWS S3 hosting"
@@ -128,8 +130,6 @@ resource "fastly_service_v1" "s3_bucket" {
 
     force_ssl = "${var.force_tls == "true" ? true : false }"
   }
-
-  default_host = "${aws_s3_bucket.fastly.id}.s3-website-${data.aws_region.current.name}.amazonaws.com"
 
   force_destroy = true
 }
