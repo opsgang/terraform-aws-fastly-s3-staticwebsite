@@ -54,17 +54,12 @@ resource "aws_s3_bucket" "fastly" {
     abort_incomplete_multipart_upload_days = 7
   }
 
-  tags {
-    product = "${var.tag_product}"
-    env     = "${var.tag_env}"
-    purpose = "${var.tag_purpose}"
-    role    = "${var.tag_role}"
-  }
+  tags = "${var.tags}"
 }
 
 resource "fastly_service_v1" "s3_bucket" {
   depends_on = ["aws_s3_bucket.fastly"]
-  name       = "${var.tag_product}-${var.tag_env}-${var.tag_role}"
+  name       = "${bucket_name}-s3-hosted"
 
   domain {
     name = "${var.fastly_dns_name}"

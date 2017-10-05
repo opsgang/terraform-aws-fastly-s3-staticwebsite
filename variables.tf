@@ -74,7 +74,7 @@ variable "custom_vcl" {
   description = "rendered output of custom vcl template. Set to false if you don't want to use"
 }
 
-variable "tag_product" {}
-variable "tag_env" {}
-variable "tag_role" {}
-variable "tag_purpose" {}
+variable "tags" {
+  description = "A map of tags to add to all resources"
+  default     = {}
+}
