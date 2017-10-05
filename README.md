@@ -14,23 +14,18 @@ This modules includes variables with default values. Please make sure you checke
 
 # Input variables
 
-* **force_tls:** ([true]/false) Enables/Disables HTTP to HTTPS forcing.
-* **index_file:** ([index.html]) Name of the index document file
-* **error_file:** ([error.html]) Name of the error document file
-* **versioning:** ([true]/false) Enables/Disables bucket versioning
-* **transition_days:** ([30]) Move files to STANDARD_IA after N days
-* **gzip_extensions:** List of files extensions for gzip
-* **gzip_content_types:** List of content types for gzip
-* **bucket_name:** Bucket name
-* **fastly_dns_name:** What domain name will be used on Fastly
-* **office_cidrs:** List of IP CIDR blocks to reach bucket directly.
-* **custom_vcl:** Rendered template file of your custom vcl. Set to false if you want to use default VCL.
-
-* AWS Tags
-  * **tag_product**
-  * **tag_env**
-  * **tag_purpose**
-  * **tag_role**
+* **force_tls:** (Bool - [true]/false) Enables/Disables HTTP to HTTPS forcing.
+* **index_file:** (String - [index.html]) Name of the index document file
+* **error_file:** (String - [error.html]) Name of the error document file
+* **versioning:** (Bool - [true]/false) Enables/Disables bucket versioning
+* **transition_days:** (Int - [30]) Move files to STANDARD_IA after N days
+* **gzip_extensions:** (List - [see variables.tf]) List of files extensions for gzip
+* **gzip_content_types:** (List - [see variables.tf]) of content types for gzip
+* **bucket_name:** (String) Bucket name
+* **fastly_dns_name:** (String) What domain name will be used on Fastly
+* **office_cidrs:** (List) List of IP CIDR blocks to reach bucket directly.
+* **custom_vcl:** (String) Rendered template file of your custom vcl. Set to false if you want to use default VCL. If you pass "false" as String, it will be ignored.
+* **tags:** (Map - [{}]) AWS tags for the resources
 
 # Outputs
 * **bucket_policy:** Bucket policy in JSON
