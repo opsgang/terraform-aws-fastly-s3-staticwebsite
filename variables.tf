@@ -66,7 +66,8 @@ variable "fastly_dns_name" {
 }
 
 variable "office_cidrs" {
-  type = "list"
+  description = "List of IP CIDRs to whitelist"
+  type        = "list"
 }
 
 variable "custom_vcl" {
