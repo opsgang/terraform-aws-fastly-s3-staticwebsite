@@ -54,9 +54,11 @@ module "static" {
   versioning      = "false"
   custom_vcl      = "false"
 
-  tag_product = "blog"
-  tag_env     = "dev"
-  tag_purpose = "content"
-  tag_role    = "blog"
+  tags {
+    product = "blog"
+    env     = "dev"
+    purpose = "content"
+    role    = "blog"
+  }  
 }
 ```
